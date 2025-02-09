@@ -1,0 +1,22 @@
+﻿<h1 id="tableLabel">Game</h1>
+
+<form [formGroup]="formGroup" (submit)="submit()">
+  <label for="name">Game name</label>
+  <input formControlName="name" type="text" />
+  <label for="minimum">Minimum</label>
+  <input formControlName="minimum" type="text" />
+  <label for="maximum">maximum</label>
+  <input formControlName="maximum" type="text" />
+  <label for="timeLimit">time Limit</label>
+  <input formControlName="timeLimit" type="text" />
+
+  <div *ngFor="let alias of formGroup.controls.gameRules.controls; let i=index">
+    <div [formGroup]="alias">
+      <input formControlName="divisor" type="text" />
+      <input formControlName="word" type="text" />
+    </div>
+  </div>
+  <button type="button" (click)="addAlias()" >Add Rule</button>
+
+  <button type="submit" [disabled]="!formGroup.valid">Submit</button>
+</form>
